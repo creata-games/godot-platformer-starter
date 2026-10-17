@@ -1,0 +1,100 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="2"]
+
+[sub_resource type="RectangleShape2D" id="p0"]
+size = Vector2(400, 40)
+
+[sub_resource type="RectangleShape2D" id="p1"]
+size = Vector2(160, 30)
+
+[sub_resource type="RectangleShape2D" id="p2"]
+size = Vector2(160, 30)
+
+[sub_resource type="RectangleShape2D" id="goal_shape"]
+size = Vector2(28, 28)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("2")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.09, 0.1, 0.16, 1)
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Platform1" type="StaticBody2D" parent="Platforms"]
+position = Vector2(200, 600)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform1"]
+shape = SubResource("p0")
+
+[node name="Look" type="ColorRect" parent="Platforms/Platform1"]
+offset_left = -200.0
+offset_top = -20.0
+offset_right = 200.0
+offset_bottom = 20.0
+color = Color(0.23, 0.36, 0.57, 1)
+
+[node name="Platform2" type="StaticBody2D" parent="Platforms"]
+position = Vector2(560, 540)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform2"]
+shape = SubResource("p1")
+
+[node name="Look" type="ColorRect" parent="Platforms/Platform2"]
+offset_left = -80.0
+offset_top = -15.0
+offset_right = 80.0
+offset_bottom = 15.0
+color = Color(0.23, 0.36, 0.57, 1)
+
+[node name="Platform3" type="StaticBody2D" parent="Platforms"]
+position = Vector2(800, 470)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform3"]
+shape = SubResource("p2")
+
+[node name="Look" type="ColorRect" parent="Platforms/Platform3"]
+offset_left = -80.0
+offset_top = -15.0
+offset_right = 80.0
+offset_bottom = 15.0
+color = Color(0.23, 0.36, 0.57, 1)
+
+[node name="Goal" type="Area2D" parent="."]
+position = Vector2(840, 424)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+shape = SubResource("goal_shape")
+
+[node name="Look" type="ColorRect" parent="Goal"]
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 14.0
+offset_bottom = 14.0
+color = Color(1, 0.8, 0.2, 1)
+
+[node name="Player" parent="." instance=ExtResource("1")]
+position = Vector2(60, 540)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Hint" type="Label" parent="UI"]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 900.0
+offset_bottom = 40.0
+text = "Стрелки / A D — бег · Пробел / W — прыжок · R — заново · Дойди до жёлтой посылки"
+
+[node name="WinLabel" type="Label" parent="UI"]
+visible = false
+offset_left = 176.0
+offset_top = 250.0
+offset_right = 976.0
+offset_bottom = 330.0
+theme_override_font_sizes/font_size = 40
+text = "Уровень пройден!\nНажми R, чтобы сыграть ещё раз"
+horizontal_alignment = 1
