@@ -46,7 +46,8 @@ func _physics_process(delta: float) -> void:
 		_buffer_left = max(_buffer_left - delta, 0.0)
 
 	# 3. Прыжок: нажали (или нажимали недавно) и стоим на земле (или стояли недавно).
-	var wants_jump := _buffer_left > 0.0 or (controls_enabled and Input.is_action_just_pressed("jump"))
+	# Управление выключено (победа) — буферный прыжок тоже не срабатывает.
+	var wants_jump := controls_enabled and (_buffer_left > 0.0 or Input.is_action_just_pressed("jump"))
 	var can_jump := is_on_floor() or _coyote_left > 0.0
 	if wants_jump and can_jump:
 		velocity.y = jump_velocity
