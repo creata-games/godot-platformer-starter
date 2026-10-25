@@ -6,6 +6,8 @@
 
 **Версия:** Godot **4.7.2 stable** (проверено; `config/features` = 4.7). Рендерер Compatibility — он нужен для веб-экспорта. Лицензия — MIT (`LICENSE`, Creata Academy).
 
+**Играть в браузере:** https://creata-games.github.io/godot-platformer-starter/ · **Скачать проект:** зелёная кнопка **Code → Download ZIP** на этой странице.
+
 ## Как открыть
 
 1. Скачай Godot 4.7 (или новее 4.x) с godotengine.org.
@@ -92,3 +94,16 @@ Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 4. **Проверь локально.** Открытие `index.html` двойным кликом не работает — нужен веб-сервер. Скопируй `serve.py` из репозитория Godot в папку экспорта и запусти `python serve.py --root .`, либо используй кнопку запуска в вебе прямо из редактора.
 5. **Упакуй.** Заархивируй **содержимое** папки в ZIP так, чтобы `index.html` лежал в корне архива (не в подпапке). Лимиты itch.io: до 1000 файлов, до 500 МБ в сумме, имена файлов чувствительны к регистру. [itch.io: HTML5-игры](https://itch.io/docs/creators/html5)
 6. **Загрузи.** На itch.io создай проект (`/game/new`), **Kind of project → HTML**, загрузи ZIP и отметь **This file will be played in the browser**, задай размер окна встраивания (например 1152×648), сохрани и открой страницу для проверки. Страницу сначала держи в режиме Draft/Restricted, пока не проверишь.
+
+## English
+
+A minimal 2D platformer starter for **Godot 4.7** (Compatibility renderer), made for the Creata Games / Creata Academy GameDev School. A courier runs across three platforms, jumps and has to deliver the yellow parcel; falling off restarts the level, **R** restarts it any time. Built-in Godot nodes only (`ColorRect` graphics, no add-ons, no images).
+
+- **Play in the browser:** https://creata-games.github.io/godot-platformer-starter/
+- **Open:** Godot 4.7+ → Project Manager → **Import** → select `project.godot` → **Import & Edit** → **F5**.
+- **Tuning knobs:** select the **Player** node in `scenes/main.tscn` — `speed`, `jump_velocity` (negative, Y points down), `gravity`, `max_fall_speed`, `coyote_time`, `jump_buffer_time`.
+- **Three exercises** (see above, in Russian): change the jump strength, add a platform staircase, make a disappearing platform (hide the visual *and* disable the `CollisionShape2D` with `set_deferred`).
+- **Tests:** `godot --headless --path . -s tests/platformer_test.gd`
+- **Web export:** preset `Web` in `export_presets.cfg` (thread support off, so it runs on static hosting such as GitHub Pages).
+
+License: MIT.
